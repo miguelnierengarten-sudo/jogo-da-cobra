@@ -1,108 +1,56 @@
-/* RESET */
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+body {
+  margin: 0;
+  font-family: Arial;
+  background: linear-gradient(#c8f7c5, #6ccf6c);
 }
 
-/* CORPO */
-body{
-    background:linear-gradient(135deg,#0f172a,#1e293b);
-    color:white;
-    font-family:Arial,sans-serif;
-    text-align:center;
-    min-height:100vh;
+header {
+  background: #1b5e20;
+  color: white;
+  text-align: center;
+  padding: 15px;
 }
 
-/* CABEÇALHO */
-header{
-    background:#0f172a;
-    padding:25px;
-    box-shadow:0 2px 10px rgba(0,0,0,0.4);
+.game {
+  max-width: 700px;
+  margin: auto;
+  padding: 20px;
 }
 
-header h1{
-    color:#22c55e;
-    font-size:3rem;
+.stats {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
 }
 
-header p{
-    margin-top:10px;
-    color:#cbd5e1;
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
 }
 
-/* ÁREA PRINCIPAL */
-main{
-    padding:30px;
+button {
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  background: #2e7d32;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
 }
 
-/* PONTUAÇÃO */
-.score{
-    font-size:1.5rem;
-    margin-bottom:20px;
+button:hover {
+  background: #145a18;
 }
 
-/* DIFICULDADE */
-select{
-    padding:10px;
-    border:none;
-    border-radius:8px;
-    font-size:16px;
-    margin:10px;
-    cursor:pointer;
-}
-
-/* BOTÃO */
-button{
-    background:#22c55e;
-    color:white;
-    border:none;
-    padding:12px 25px;
-    border-radius:8px;
-    font-size:16px;
-    cursor:pointer;
-    transition:0.3s;
-}
-
-button:hover{
-    background:#16a34a;
-    transform:scale(1.05);
-}
-
-/* ÁREA DO JOGO */
-.game-container{
-    margin-top:25px;
-}
-
-canvas{
-    background:#000;
-    border:4px solid #22c55e;
-    border-radius:12px;
-
-    box-shadow:
-    0 0 15px #22c55e,
-    0 0 30px #22c55e;
-}
-
-/* INSTRUÇÕES */
-.instructions{
-    margin-top:30px;
-}
-
-.instructions h2{
-    color:#22c55e;
-    margin-bottom:10px;
-}
-
-.instructions p{
-    color:#e2e8f0;
-    line-height:1.8;
-}
-
-/* RODAPÉ */
-footer{
-    margin-top:40px;
-    padding:20px;
-    background:#0f172a;
-    color:#94a3b8;
+.log {
+  margin-top: 15px;
+  background: white;
+  padding: 10px;
+  height: 180px;
+  overflow-y: auto;
+  border-radius: 10px;
 }
