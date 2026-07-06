@@ -1,158 +1,90 @@
-const canvas = document.getElementById("game");
-const ctx = canvas.getContext("2d");
+let money = 50;
+let soil = 50;
+let energy = 100;
+let rep = 50;
+let harvest = 0;
 
-const scoreText = document.getElementById("score");
-const startBtn = document.getElementById("startBtn");
-const difficulty = document.getElementById("difficulty");
-
-const box = 20;
-
-let snake;
-let direction;
-let food;
-let score;
-let game;
-
-// Controles
-document.addEventListener("keydown", (event) => {
-
-    if(event.key === "ArrowUp" && direction !== "DOWN"){
-        direction = "UP";
-    }
-
-    if(event.key === "ArrowDown" && direction !== "UP"){
-        direction = "DOWN";
-    }
-
-    if(event.key === "ArrowLeft" && direction !== "RIGHT"){
-        direction = "LEFT";
-    }
-
-    if(event.key === "ArrowRight" && direction !== "LEFT"){
-        direction = "RIGHT";
-    }
-
-});
-
-// Verifica colisão com o próprio corpo
-function collision(head, body){
-
-    for(let i = 0; i < body.length; i++){
-
-        if(
-            head.x === body[i].x &&
-            head.y === body[i].y
-        ){
-            return true;
-        }
-
-    }
-
-    return false;
+function update() {
+  document.getElementById("money").innerText = money;
+  document.getElementById("soil").innerText = soil;
+  document.getElementById("energy").innerText = energy;
+  document.getElementById("rep").innerText = rep;
 }
 
-// Desenha o jogo
-function draw(){
-
-    ctx.fillStyle = "black";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    // Comida
-    ctx.fillStyle = "red";
-    ctx.fillRect(food.x, food.y, box, box);
-
-    // Cobra
-    snake.forEach((part, index) => {
-
-        ctx.fillStyle =
-            index === 0 ? "#22c55e" : "#7CFC00";
-
-        ctx.fillRect(
-            part.x,
-            part.y,
-            box,
-            box
-        );
-
-    });
-
-    let x = snake[0].x;
-    let y = snake[0].y;
-
-    if(direction === "UP") y -= box;
-    if(direction === "DOWN") y += box;
-    if(direction === "LEFT") x -= box;
-    if(direction === "RIGHT") x += box;
-
-    // Comeu a comida
-    if(x === food.x && y === food.y){
-
-        score++;
-        scoreText.textContent = score;
-
-        food = {
-            x: Math.floor(Math.random() * 20) * box,
-            y: Math.floor(Math.random() * 20) * box
-        };
-
-    } else {
-
-        snake.pop();
-
-    }
-
-    const head = {
-        x: x,
-        y: y
-    };
-
-    // Game Over
-    if(
-        x < 0 ||
-        y < 0 ||
-        x >= canvas.width ||
-        y >= canvas.height ||
-        collision(head, snake)
-    ){
-
-        clearInterval(game);
-
-        alert(
-            "🐍 Game Over!\n\nPontuação: " + score
-        );
-
-        return;
-    }
-
-    snake.unshift(head);
+function log(msg) {
+  let div = document.getElementById("log");
+  div.innerHTML = msg + "<br>" + div.innerHTML;
 }
 
-// Inicia o jogo
-function startGame(){
+// 🌾 plantar
+function plantar() {
+  if (energy < 10) return log("⚠️ Energia baixa!");
 
-    clearInterval(game);
+  harvest += 10;
+  soil -= 5;
+  energy -= 10;
 
-    snake = [
-        {
-            x: 200,
-            y: 200
-        }
-    ];
-
-    direction = "RIGHT";
-
-    score = 0;
-    scoreText.textContent = score;
-
-    food = {
-        x: Math.floor(Math.random() * 20) * box,
-        y: Math.floor(Math.random() * 20) * box
-    };
-
-    const speed = Number(difficulty.value);
-
-    game = setInterval(draw, speed);
+  log("🌾 Você plantou e gerou colheita!");
+  evento();
+  update();
 }
 
-// Botão iniciar
-startBtn.addEventListener("click", startGame);
+// 🌿 adubar
+function adubar() {
+  if (money < 10) return log("⚠️ Sem dinheiro!");
+
+  money -= 10;
+  soil += 15;
+
+  log("🌿 Solo melhorado!");
+  evento();
+  update();
+}
+
+// 💰 vender
+function vender() {
+  if (harvest <= 0) return log("⚠️ Nada para vender!");
+
+  let ganho = harvest * 2;
+  money += ganho;
+  rep += 10;
+  harvest = 0;
+
+  log("💰 Venda realizada: R$ " + ganho);
+  evento();
+  update();
+}
+
+// 😴 descansar
+function descansar() {
+  energy += 30;
+  if (energy > 100) energy = 100;
+
+  log("😴 Energia recuperada");
+  update();
+}
+
+// 🌦️ eventos aleatórios
+function evento() {
+  let r = Math.random();
+
+  if (r < 0.25) {
+    soil -= 10;
+    log("🌧️ Chuva forte afetou o solo");
+  }
+
+  if (r > 0.7) {
+    rep += 10;
+    log("🏆 Feira valorizou sua produção");
+  }
+
+  if (r > 0.9) {
+    money -= 10;
+    log("🐛 Praga atacou a plantação");
+  }
+
+  update();
+}
+
+update();
+log("🌱 Bem-vindo à Fazenda Viva!");
