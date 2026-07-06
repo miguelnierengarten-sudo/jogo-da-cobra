@@ -1,17 +1,13 @@
-🌱🚜 Fazenda Viva — Agrinho EXPANSÃO
+🌱🚜 Fazenda Viva — Agrinho
 📖 Descrição
 
-Fazenda Viva é um jogo de simulação onde você administra uma fazenda, tomando decisões sobre plantio, venda e melhorias. O jogo ensina sobre agricultura sustentável, preço justo e a importância do produtor rural.
+Fazenda Viva é um jogo de simulação em que você administra uma fazenda e aprende sobre agricultura sustentável, preço justo e a importância do produtor rural. Cada decisão influencia o desenvolvimento da sua produção.
 
 🎮 Como jogar
 
-Você controla uma fazenda usando botões de ação:
+Você controla a fazenda por meio de ações simples:
+🌾 plantar para gerar colheita, 🌿 adubar para melhorar o solo, 💰 vender para ganhar dinheiro e 😴 descansar para recuperar energia. Também é possível evoluir sua fazenda na loja com melhorias.
 
-🌾 Plantar: gera colheita, mas gasta energia
-🌿 Adubar: melhora o solo usando dinheiro
-💰 Vender: troca colheita por dinheiro
-😴 Descansar: recupera energia
-🏪 Loja: melhora sua fazenda
 🎯 Objetivo
 
-Fazer sua fazenda crescer equilibrando dinheiro, solo e reputação, aprendendo sobre decisões conscientes no campo 🌱
+Desenvolver sua fazenda de forma equilibrada, aumentando dinheiro, qualidade do solo e reputação, enquanto aprende a tomar decisões conscientes no campo 🌱🚜
